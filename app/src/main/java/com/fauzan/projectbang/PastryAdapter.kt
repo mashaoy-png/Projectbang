@@ -5,27 +5,27 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.fauzan.projectbang.databinding.ItemProductBinding
+import com.fauzan.projectbang.databinding.ItemPastryBinding
 
 // UBAH 'private val' MENJADI 'private var'
-class ProductAdapter(private var items: List<ProductModel>) : RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
+class PastryAdapter(private var items: List<ProductModel>) : RecyclerView.Adapter<PastryAdapter.ViewHolder>() {
 
-    class ViewHolder(val binding: ItemProductBinding) : RecyclerView.ViewHolder(binding.root)
+    class ViewHolder(val binding: ItemPastryBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding = ItemProductBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = ItemPastryBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = items[position]
-        holder.binding.tvProductName.text = item.title
-        holder.binding.tvProductPrice.text = item.price
+        holder.binding.tvPastryName.text = item.title
+        holder.binding.tvPastryPrice.text = item.price
 
         Glide.with(holder.itemView.context)
             .load(item.imageUrl)
             .centerCrop()
-            .into(holder.binding.imgProduct)
+            .into(holder.binding.imgPastry)
 
         holder.itemView.setOnClickListener {
             val context = holder.itemView.context
@@ -33,7 +33,7 @@ class ProductAdapter(private var items: List<ProductModel>) : RecyclerView.Adapt
                 putExtra("EXTRA_TITLE", item.title)
                 putExtra("EXTRA_PRICE", item.price)
                 putExtra("EXTRA_IMAGE", item.imageUrl)
-                putExtra("EXTRA_CATEGORY", "Drink")
+                putExtra("EXTRA_CATEGORY", "Pastry")
             }
             context.startActivity(intent)
         }
@@ -41,9 +41,9 @@ class ProductAdapter(private var items: List<ProductModel>) : RecyclerView.Adapt
 
     override fun getItemCount() = items.size
 
-    // === TAMBAHKAN FUNGSI INI UNTUK SEARCH ===
+    // === TAMBAHKAN FUNGSI INI ===
     fun updateData(newItems: List<ProductModel>) {
         items = newItems
-        notifyDataSetChanged() // Refresh tampilan
+        notifyDataSetChanged()
     }
 }
