@@ -55,11 +55,6 @@ class CartActivity : AppCompatActivity() {
 
                 // 4. Refresh Tampilan Cart (jadi kosong)
                 setupCartList()
-
-                // 5. (Opsional) Langsung arahkan ke halaman History
-                val intent = Intent(this, HistoryActivity::class.java)
-                startActivity(intent)
-                finish()
             }
         }
     }
