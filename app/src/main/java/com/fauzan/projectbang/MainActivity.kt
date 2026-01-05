@@ -1,5 +1,6 @@
 package com.fauzan.projectbang
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -30,6 +31,26 @@ class MainActivity : AppCompatActivity() {
         setupCategoryList() // Kategori (Bulat)
         setupLists()        // Pasang Adapter ke RecyclerView
         setupSearch()       // Aktifkan fitur search
+
+        binding.imgProfile.setOnClickListener {
+            val intent = Intent(this, ProfileActivity::class.java)
+            startActivity(intent)
+        }
+        binding.navHome.setOnClickListener {
+            // Opsional: Scroll ke atas
+        }
+
+        // 2. Klik Cart
+        binding.navCart.setOnClickListener {
+            startActivity(Intent(this, CartActivity::class.java))
+            overridePendingTransition(0, 0)
+        }
+
+        // 3. Klik Profile
+        binding.navProfile.setOnClickListener {
+            startActivity(Intent(this, ProfileActivity::class.java))
+            overridePendingTransition(0, 0)
+        }
     }
 
     // Fungsi untuk mengisi Data Asli

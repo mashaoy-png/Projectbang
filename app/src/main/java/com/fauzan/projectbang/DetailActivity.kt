@@ -70,5 +70,46 @@ class DetailActivity : AppCompatActivity() {
             val summary = "$quantity x $title $details [$service] Masuk Keranjang!"
             Toast.makeText(this, summary, Toast.LENGTH_LONG).show()
         }
+        // BAGIAN TOMBOL ADD TO CART
+        binding.btnAddToCart.setOnClickListener {
+            // 1. Ambil Harga (Bersihkan string "Rp. 21.000" jadi angka 21000)
+            val priceString = intent.getStringExtra("EXTRA_PRICE") ?: "0"
+            val cleanPrice = priceString.replace("Rp. ", "").replace(".", "").trim()
+            val priceInt = cleanPrice.toIntOrNull() ?: 0
+
+            // 2. Cek Kategori untuk detail (Drink/Pastry)
+            val category = intent.getStringExtra("EXTRA_CATEGORY")
+            var details = ""
+
+            if (category != "Pastry" && binding.layoutDrinkOptions.visibility == View.VISIBLE) {
+                val temp = if (binding.rbIce.isChecked) "Ice" else "Hot"
+                val size = if (binding.rbNormalSize.isChecked) "Normal" else "Large"
+                val sugar = when {
+                    binding.rbSugarNormal.isChecked -> "Normal Sugar"
+                    binding.rbSugarLess.isChecked -> "Less Sugar"
+                    else -> "No Sugar"
+                }
+                details = "$temp, $size, $sugar"
+
+                // Tambah harga jika Large (Misal +3000) - Opsional logic
+                // if (size == "Large") priceInt += 3000
+            } else {
+                details = "Reguler"
+            }
+
+            // 3. Simpan ke CartManager
+            val newItem = CartItem(
+                title = binding.tvDetailName.text.toString(),
+                price = priceInt,
+                imageUrl = intent.getStringExtra("EXTRA_IMAGE") ?: "",
+                quantity = binding.tvQuantity.text.toString().toInt(),
+                details = details
+            )
+
+            CartManager.addItem(newItem)
+
+            Toast.makeText(this, "Berhasil masuk keranjang!", Toast.LENGTH_SHORT).show()
+            finish() // Kembali ke menu sebelumnya (Opsional)
+        }
     }
 }
