@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "981000928813",
+    "project_id": "projectbangbaru",
+    "storage_bucket": "projectbangbaru.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:981000928813:android:0084073bcd8a6a731742a4",
+        "android_client_info": {
+          "package_name": "com.fauzan.projectbang"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyACNvo10QJLmwfWdTE1Hcff_EE0SjA2uZg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

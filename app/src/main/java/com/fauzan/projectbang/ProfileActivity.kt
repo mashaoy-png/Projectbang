@@ -6,6 +6,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.fauzan.projectbang.databinding.ActivityProfileBinding
+import com.google.firebase.auth.FirebaseAuth
 // Import untuk Maps
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -82,7 +83,15 @@ class ProfileActivity : AppCompatActivity(), OnMapReadyCallback {
         }
 
         binding.btnLogout.setOnClickListener {
+            FirebaseAuth.getInstance().signOut()
+
             Toast.makeText(this, "Berhasil Keluar Akun", Toast.LENGTH_SHORT).show()
+
+            // Kembali ke Login Page & Hapus semua history page sebelumnya
+            val intent = Intent(this, LoginActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+            finish()
         }
     }
 

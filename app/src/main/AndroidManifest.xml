@@ -13,17 +13,20 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Projectbang">
         <activity
-            android:name=".MainActivity"
+            android:name=".LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".MainActivity" />
         <activity android:name=".DetailActivity" />
         <activity android:name=".ProfileActivity" />
         <activity android:name=".CartActivity" />
         <activity android:name=".HistoryActivity" />
+        <activity android:name=".RegisterActivity" />
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyBBGTLB4CeRvKxWlzsE2wauY9MeFeZFngs" />
